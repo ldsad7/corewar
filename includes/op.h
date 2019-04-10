@@ -6,7 +6,7 @@
 /*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/10 17:51:43 by tsimonis         ###   ########.fr       */
+/*   Updated: 2019/04/11 02:50:35 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,26 @@ typedef struct					s_header
 	unsigned int				prog_size;
 	char						comment[COMMENT_LENGTH + 1];
 }								t_header;
+
+# include "libft.h"
+
+typedef struct					s_op
+{
+	char						*name;
+	int							num_of_args;
+	int							args[3];
+	int							num;
+	int							cycles_before_execution;
+	char						*description;
+	int							code_arguments;
+	int							size_of_t_dir;
+}								t_op;
+
+enum {
+	e_num_args_not_one,
+	e_incorrect_file,
+	e_open_error,
+	e_malloc_error
+};
 
 #endif
