@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/11 13:22:13 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/11 15:10:03 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ enum {
 	e_open_error,
 	e_malloc_error,
 	e_empty_file,
-	e_error_reading_file
+	e_error_reading_file,
+	e_last_instruction_not_slash_n
 };
 
 void							error_exit(int value);
