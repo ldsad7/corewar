@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/11 15:10:03 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 02:18:15 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,21 @@ typedef char					t_arg_type;
 typedef struct					s_header
 {
 	unsigned int				magic;
-	char						prog_name[PROG_NAME_LENGTH + 1];
+	char						*prog_name;
 	unsigned int				prog_size;
-	char						comment[COMMENT_LENGTH + 1];
+	char						*comment;
+	int							num_line;
 }								t_header;
+
+typedef struct					s_main
+{
+	int							num_of_op;
+	int							size_of_op;
+	char						*args[3];
+	char						*label;
+	struct s_main				*next;
+	int							num_line;
+}								t_main;
 
 # include "libft.h"
 
@@ -73,21 +84,40 @@ typedef struct					s_op
 	int							args[3];
 	int							num;
 	int							cycles_before_execution;
-	char						*description;
-	int							code_arguments;
+	int							arg_type_code;
 	int							size_of_t_dir;
+	int							changes_carry;
 }								t_op;
+
+# define NUM_OF_OPS				16
+
+extern t_op g_op_tab[NUM_OF_OPS];
 
 enum {
 	e_num_args_not_one,
-	e_incorrect_file,
+	e_incorrect_s_file,
 	e_open_error,
 	e_malloc_error,
-	e_empty_file,
-	e_error_reading_file,
-	e_last_instruction_not_slash_n
+	e_invalid_instruction,
+	e_repeating_name_instruction,
+	e_repeating_comment_instruction,
+	e_no_name_after_name_command,
+	e_no_comment_after_comment_command,
+	e_no_opening_quote,
+	e_no_closing_quote,
+	e_name_too_long,
+	e_comment_too_long,
+	e_no_name,
+	e_no_comment,
+	e_empty_label,
+	e_no_operation,
+	e_not_enoguh_arguments,
+	e_incorrect_symbol_in_label,
+	// e_empty_file,
+	// e_error_reading_file,
+	// e_last_instruction_not_slash_n
 };
 
-void							error_exit(int value);
+void							error_exit(int value, int num_line, int symbol);
 
 #endif
