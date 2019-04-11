@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/11 02:50:35 by tsimonis         ###   ########.fr       */
+/*   Updated: 2019/04/11 13:22:13 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,11 @@ enum {
 	e_num_args_not_one,
 	e_incorrect_file,
 	e_open_error,
-	e_malloc_error
+	e_malloc_error,
+	e_empty_file,
+	e_error_reading_file
 };
+
+void							error_exit(int value);
 
 #endif

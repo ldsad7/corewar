@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+         #
+#    By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/01 17:36:37 by bsprigga          #+#    #+#              #
-#    Updated: 2019/04/11 02:33:09 by tsimonis         ###   ########.fr        #
+#    Updated: 2019/04/11 12:39:09 by bsprigga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,10 @@ CC = clang
 FLAGS := -Wall -Werror -Wextra -g
 VPATH := . srcs
 
-SRCS =	op.c \
-		main.c
+SRCS =	main.c\
+		op.c \
+		support_part_1.c 
+		
 
 OBJECTS = $(SRCS:.c=.o)
 
