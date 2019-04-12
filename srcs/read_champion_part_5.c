@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 19:41:04 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:18:24 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void		read_command(char **line, int *j, int fd_input, t_main **new)
 		if (!((*new)->num_of_op = find_op(tmp)))
 			error_exit(e_no_operation, (*new)->num_line, i);
 		free(tmp);
-		// read_arguments(line, &j, &new);
+		while ((*line)[i] && ft_strchr(" \t", (*line)[i]))
+			i++;
+		// read_arguments(line, &i, &new);
 	}
 }

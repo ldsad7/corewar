@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/12 21:05:53 by tsimonis         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:17:18 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ enum {
 	e_no_operation,
 	e_not_enough_arguments,
 	e_incorrect_symbol_in_label,
+	e_invalid_instruction
 	// e_empty_file,
 	// e_error_reading_file,
 	// e_last_instruction_not_slash_n

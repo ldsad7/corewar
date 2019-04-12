@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   support_part_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:38:03 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 21:06:10 by tsimonis         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:17:22 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ static void	error_exit2(int value, int num_line, int symbol)
 	else if (value == e_no_name)
 		exit(ft_fprintf(2,
 "Error: no name or name goes after the first operation [%d:%d]\n",
+						num_line, symbol));
+	else if (value == e_invalid_instruction)
+		exit(ft_fprintf(2, "Error: there is no such instruction [%d:%d]\n",
 						num_line, symbol));
 	error_exit3(value, num_line, symbol);	
 }
