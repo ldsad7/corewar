@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+         #
+#    By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/01 17:36:37 by bsprigga          #+#    #+#              #
-#    Updated: 2019/04/11 20:26:25 by tsimonis         ###   ########.fr        #
+#    Updated: 2019/04/12 15:32:29 by bsprigga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,14 @@ FLAGS := -Wall -Werror -Wextra -g
 VPATH := . srcs
 
 SRCS =	main.c\
+		read_champion_part_1.c \
+		read_champion_part_2.c \
+		read_champion_part_3.c \
+		read_champion_part_4.c \
 		op.c \
-		support_part_1.c 
+		support_part_1.c \
+		support_part_2.c \
+		support_part_3.c 
 		
 
 OBJECTS = $(SRCS:.c=.o)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/12 02:18:15 by tsimonis         ###   ########.fr       */
+/*   Updated: 2019/04/12 15:41:16 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,29 @@ enum {
 };
 
 void							error_exit(int value, int num_line, int symbol);
+void							vars_init(t_header **header, t_main **main,
+								char **line, int *i);
+void							champion_file_parsing(char *filename);
+// void							parsing_line_by_line(int fd_input,
+// 								t_header **header, t_main **main);
+int								startswith(char *str, char *start, int num);
+int								endswith(char *str, char *end, int num);
+void							parse_name(char **line, int i, int fd_input,
+								t_header **header);
+void							parse_comment(char **line, int i, int fd_input,
+								t_header **header);
+char							*name_comment_malloc(int len);
+void							free_line_and_exit_header(char *line,
+								t_header *header, int j);
+void							free_line_and_exit_header(char *line,
+								t_header *header, int j);
+void							free_line_and_exit_main(char *line,
+								t_main *main, int j);
+void							parse_operation(char **line, int i,
+								int fd_input, t_main **main);
+void							check_length_name(int name_i, int j,
+								t_header *header);
+void							check_length_comment(int comment_i, int j,
+								t_header *header);
 
 #endif
