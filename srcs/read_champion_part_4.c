@@ -6,13 +6,13 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 19:20:04 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 19:24:42 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op.h"
 
-static t_main	*new_op_setup(t_main **main)
+static t_main	*new_op_setup(t_main **main, int i)
 {
 	t_main	*new;
 
@@ -62,7 +62,7 @@ void	parse_operation(char **line, int i, int fd_input, t_main **main)
 	int		j;
 	char	*tmp;
 
-	new = new_op_setup(main);
+	new = new_op_setup(main, i);
 	j = i;
 	if ((*line)[j] == ':')
 		error_exit(e_empty_label, (*main)->num_line, i);
