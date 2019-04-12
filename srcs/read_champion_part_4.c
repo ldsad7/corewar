@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 19:24:42 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 19:36:11 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_main	*new_op_setup(t_main **main, int i)
 //this one can be applied to read_command()
 void	error_no_oper_no_args(char **line, int i, int j, t_main **main)
 {
-	if (find_op(ft_strsub(*line, i, j - i))) // should be !find_op(ft_strsub(*line, i, j - i)) !!!!!!!!!!!!!!!!!!!!!
+	if (!find_op(ft_strsub(*line, i, j - i)))
 		error_exit(e_no_operation, (*main)->num_line, i);
 	else
 		error_exit(e_not_enough_arguments, (*main)->num_line, j);
@@ -64,13 +64,14 @@ void	parse_operation(char **line, int i, int fd_input, t_main **main)
 
 	new = new_op_setup(main, i);
 	j = i;
-	if ((*line)[j] == ':')
+	if ((*line)[j] == LABEL_CHAR)
 		error_exit(e_empty_label, (*main)->num_line, i);
-	while ((*line)[j] && (*line)[j] != ' ' && (*line)[j] != ':')
+	while ((*line)[j] && !ft_strchr(" \t", (*line)[j]) &&
+	(*line)[j] != LABEL_CHAR)
 		j++;
 	if (!((*line)[j]))
 		error_no_oper_no_args(line, i, j, main);
-	else if ((*line)[j] == ':')
+	else if ((*line)[j] == LABEL_CHAR)
 	{
 		if (!(new->label = ft_strsub(*line, i, j - i)))
 			error_exit(e_malloc_error, (*main)->num_line, j);
@@ -78,7 +79,7 @@ void	parse_operation(char **line, int i, int fd_input, t_main **main)
 		j++;
 		read_command(line, &j, fd_input, &new);
 	}
-	else if ((*line)[j] == ' ')
+	else if (!ft_strchr(" \t", (*line)[j]))
 	{
 		new->label = NULL;
 		if (!(tmp = ft_strsub(*line, i, j - i)))

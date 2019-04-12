@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 18:57:48 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 19:41:04 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,10 @@ void		read_command(char **line, int *j, int fd_input, t_main **new)
 		(*j)++;
 	skip_empty_and_comment_lines(line, j, fd_input, new);
 	i = *j;
-	while ((*line)[i] && (*line)[i] != ' ') // redundant part? because in above else block same while is executed
+	while ((*line)[i] && !ft_strchr(" \t", (*line)[i]))
 		i++;
 	if (!((*line)[i]))
-	{
-		if (find_op(ft_strsub(*line, i, i - *j))) // should be !find_op(ft_strsub(*line, i, j - i)) !!!!!!!!!!!!!!!!!!!!!
-			error_exit(e_no_operation, (*new)->num_line, *j);
-		else
-			error_exit(e_not_enough_arguments, (*new)->num_line, i);
-	}
+		error_no_oper_no_args(line, *j, i, new);
 	else
 	{
 		if (!(tmp = ft_strsub(*line, *j, i - *j)))

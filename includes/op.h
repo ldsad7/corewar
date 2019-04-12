@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/12 18:07:22 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 19:41:40 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,7 @@ void							check_length_comment(int comment_i, int j,
 void							read_command(char **line, int *j,
 								int fd_input, t_main **new);
 int								find_op(char *str);
+void							error_no_oper_no_args(char **line, int i,
+								int j, t_main **main);
 
 #endif
