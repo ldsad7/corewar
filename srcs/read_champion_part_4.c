@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_champion_part_4.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 20:09:29 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:56:51 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	parse_operation(char **line, int i, int fd_input, t_main **main)
 	j = i;
 	if ((*line)[j] == LABEL_CHAR)
 		error_exit(e_empty_label, (*main)->num_line, i);
-	while ((*line)[j] && !ft_strchr(" \t", (*line)[j]) &&
+	while ((*line)[j] && ft_strchr(" \t", (*line)[j]) &&
 	(*line)[j] != LABEL_CHAR)
 		j++;
 	if (!((*line)[j]))
@@ -79,7 +79,7 @@ void	parse_operation(char **line, int i, int fd_input, t_main **main)
 		j++;
 		read_command(line, &j, fd_input, &new);
 	}
-	else if (!ft_strchr(" \t", (*line)[j]))
+	else if (ft_strchr(" \t", (*line)[j]))
 	{
 		new->label = NULL;
 		if (!(tmp = ft_strsub(*line, i, j - i)))

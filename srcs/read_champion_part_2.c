@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_champion_part_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 16:48:44 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:51:34 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		parse_name(char **line, int i, int fd_input, t_header **header)
 {
 	int		j;
 
-	j = i + 5;
+	j = i + ft_strlen(NAME_CMD_STRING);
 	while ((*line)[j] && ft_strchr(" \n\t", (*line)[j]))
 		j++;
 	check_errors_name(*line, i, j, *header);

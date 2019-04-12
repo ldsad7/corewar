@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   support_part_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:38:03 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 20:30:49 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:44:09 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	error_exit2(int value, int num_line, int symbol)
 		exit(ft_fprintf(2, "Error: no opening \" after instruction [%d:%d]\n",
 						num_line, symbol));
 	else if (value == e_no_closing_quote)
-		exit(ft_fprintf(2, "Error: no closing \"after instruction [%d:%d]\n",
+		exit(ft_fprintf(2, "Error: no closing \" after instruction [%d:%d]\n",
 						num_line, symbol));
 	else if (value == e_name_too_long)
 		exit(ft_fprintf(2, "Error: program name is too long [%d:%d]\n",

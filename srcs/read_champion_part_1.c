@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_champion_part_1.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 20:18:13 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:50:41 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void		parse_instruction(char **line, int i, int fd_input,
 								t_header **header)
 {
-	if (startswith(*line + i, ".name", 5))
+	if (startswith(*line + i, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 		parse_name(line, i, fd_input, header);
-	else if (startswith(*line + i, ".comment", 8))
+	else if (startswith(*line + i, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
 		parse_comment(line, i, fd_input, header);
 	else
 		error_exit(e_invalid_instruction, (*header)->num_line, i + 1);
@@ -36,7 +36,7 @@ static void	parsing_line_by_line_ext(char *line, t_header **header,
 {
 	free(line);
 	(*header)->num_line++;
-	(*main)->num_line = (*main)->num_line + ((*main)->num_line != 0);
+	(*main)->num_line += ((*main)->num_line != 0);
 }
 
 static void	parsing_line_by_line(int fd_input, t_header **header,
@@ -49,11 +49,11 @@ static void	parsing_line_by_line(int fd_input, t_header **header,
 	while (get_next_line(fd_input, &line) > 0)
 	{
 		i = 0;
-		while (line[i] && ft_strchr(" \n\t", line[i]))
+		while (line[i] && ft_strchr(" \t", line[i]))
 			i++;
 		if (!(line[i]) || line[i] == COMMENT_CHAR ||
 			line[i] == ALT_COMMENT_CHAR)
-			return ;
+			;
 		else if (line[i] == '.')
 			parse_instruction(&line, i, fd_input, header);
 		else if (!((*header)->prog_name) || !((*header)->comment))
@@ -83,4 +83,6 @@ void		champion_file_parsing(char *filename)
 	if (!(main = (t_main *)malloc(sizeof(t_main))))
 		error_exit(e_malloc_error, 0, 0);
 	parsing_line_by_line(fd_input, &header, &main, filename);
+	printf("%s\n", header->prog_name);
+	printf("%s\n", header->comment);
 }

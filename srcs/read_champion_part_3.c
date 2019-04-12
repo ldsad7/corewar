@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_champion_part_3.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 16:32:38 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:51:47 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	parse_comment(char **line, int i, int fd_input, t_header **header)
 {
 	int		j;
 
-	j = i + 8;
+	j = i + ft_strlen(COMMENT_CMD_STRING);
 	while ((*line)[j] && ft_strchr(" \n\t", (*line)[j]))
 		j++;
 	check_errors_comment(*line, i, j, *header);

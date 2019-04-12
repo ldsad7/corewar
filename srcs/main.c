@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 01:17:40 by tsimonis          #+#    #+#             */
-/*   Updated: 2019/04/12 15:34:17 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:36:06 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@
 	
 // }
 
-
-
 int		main(int argc, char *argv[])
 {
 	if (argc != 2)
@@ -75,6 +73,4 @@ int		main(int argc, char *argv[])
 	if (!endswith(argv[1], ".s", 2))
 		error_exit(e_incorrect_s_file, 0, 0);
 	champion_file_parsing(argv[1]);
-	// printf("%s\n", (*header)->prog_name);
-	// printf("%s\n", (*header)->comment);
 }
