@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/12 15:41:16 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 18:07:22 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ enum {
 	e_no_comment,
 	e_empty_label,
 	e_no_operation,
-	e_not_enoguh_arguments,
+	e_not_enough_arguments,
 	e_incorrect_symbol_in_label,
 	// e_empty_file,
 	// e_error_reading_file,
@@ -143,5 +143,8 @@ void							check_length_name(int name_i, int j,
 								t_header *header);
 void							check_length_comment(int comment_i, int j,
 								t_header *header);
+void							read_command(char **line, int *j,
+								int fd_input, t_main **new);
+int								find_op(char *str);
 
 #endif

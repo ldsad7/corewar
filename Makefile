@@ -6,7 +6,7 @@
 #    By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/01 17:36:37 by bsprigga          #+#    #+#              #
-#    Updated: 2019/04/12 15:32:29 by bsprigga         ###   ########.fr        #
+#    Updated: 2019/04/12 17:30:12 by bsprigga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS =	main.c\
 		read_champion_part_2.c \
 		read_champion_part_3.c \
 		read_champion_part_4.c \
+		read_champion_part_5.c \
 		op.c \
 		support_part_1.c \
 		support_part_2.c \

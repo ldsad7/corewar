@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 14:28:10 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 16:32:38 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ void	check_errors_comment(char *line, int i, int j, t_header *header)
 	if (!(line[j]))
 	{
 		if (header->comment)
-			error_exit(e_repeating_comment_instruction, header->num_line, i + 1);
+			error_exit(e_repeating_comment_instruction,
+			header->num_line, i + 1);
 		else
-			error_exit(e_no_comment_after_comment_command, header->num_line, j + 1);
+			error_exit(e_no_comment_after_comment_command,
+			header->num_line, j + 1);
 	}
 	if (line[j] != '"')
 		error_exit(e_no_opening_quote, header->num_line, j + 1);

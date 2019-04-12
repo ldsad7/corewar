@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 15:49:40 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 16:48:44 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,12 @@ static void	check_errors_name(char *line, int i, int j, t_header *header)
 		error_exit(e_repeating_name_instruction, header->num_line, i + 1);
 }
 
-void	parse_name(char **line, int i, int fd_input, t_header **header)
+/*
+**	++j after check_errors_name() needed to skip " (opening double quotes sign)
+**	j++ after name_filling() needed to skip " (closing double quotes sign)
+*/
+
+void		parse_name(char **line, int i, int fd_input, t_header **header)
 {
 	int		j;
 

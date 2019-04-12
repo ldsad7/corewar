@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:38:03 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 14:28:18 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 17:28:04 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	error_exit3(int value, int num_line, int symbol)
 	else if (value == e_no_operation)
 		exit(ft_fprintf(2, "Error: there is no such operation [%d:%d]\n",
 						num_line, symbol));
-	else if (value == e_not_enoguh_arguments)
+	else if (value == e_not_enough_arguments)
 		exit(ft_fprintf(2, "Error: there is not enough arguments [%d:%d]\n",
 						num_line, symbol));
 	else if (value == e_incorrect_symbol_in_label)
