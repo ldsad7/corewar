@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/12 19:41:40 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:05:53 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ enum {
 	e_incorrect_s_file,
 	e_open_error,
 	e_malloc_error,
-	e_invalid_instruction,
 	e_repeating_name_instruction,
 	e_repeating_comment_instruction,
 	e_no_name_after_name_command,

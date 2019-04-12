@@ -6,7 +6,7 @@
 /*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 20:50:41 by tsimonis         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:06:23 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ void		parse_instruction(char **line, int i, int fd_input,
 {
 	if (startswith(*line + i, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 		parse_name(line, i, fd_input, header);
-	else if (startswith(*line + i, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
+	else if (startswith(*line + i, COMMENT_CMD_STRING,
+		ft_strlen(COMMENT_CMD_STRING)))
 		parse_comment(line, i, fd_input, header);
-	else
-		error_exit(e_invalid_instruction, (*header)->num_line, i + 1);
 }
 
 static void	check_prog_name_and_comment_existence(t_header *header, int i)
@@ -54,7 +53,8 @@ static void	parsing_line_by_line(int fd_input, t_header **header,
 		if (!(line[i]) || line[i] == COMMENT_CHAR ||
 			line[i] == ALT_COMMENT_CHAR)
 			;
-		else if (line[i] == '.')
+		else if (startswith(line + i, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)
+	|| startswith(line + i, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING))))
 			parse_instruction(&line, i, fd_input, header);
 		else if (!((*header)->prog_name) || !((*header)->comment))
 			check_prog_name_and_comment_existence(*header, i);

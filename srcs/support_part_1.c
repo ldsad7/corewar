@@ -6,7 +6,7 @@
 /*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:38:03 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 20:44:09 by tsimonis         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:06:10 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,6 @@ void		error_exit(int value, int num_line, int symbol)
 		exit(ft_fprintf(2, "Error: attempting to open file failed\n"));
 	else if (value == e_malloc_error)
 		exit(ft_fprintf(2, "Error: Malloc returned NULL\n"));
-	else if (value == e_invalid_instruction)
-		exit(ft_fprintf(2, "Error: there is no such instruction [%d:%d]\n",
-						num_line, symbol));
 	else if (value == e_repeating_name_instruction)
 		exit(ft_fprintf(2,
 "Error: .name instruction repeated at least twice [%d:%d]\n",
