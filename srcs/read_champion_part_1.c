@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 14:28:51 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:18:13 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	parsing_line_by_line_ext(char *line, t_header **header,
 }
 
 static void	parsing_line_by_line(int fd_input, t_header **header,
-								t_main **main)
+								t_main **main, char *filename)
 {
 	char		*line;
 	int			i;
@@ -65,11 +65,9 @@ static void	parsing_line_by_line(int fd_input, t_header **header,
 			parse_operation(&line, i, fd_input, main);
 		}
 		parsing_line_by_line_ext(line, header, main);
-		// free(line);
-		// (*header)->num_line++;
-		// (*main)->num_line = (*main)->num_line + ((*main)->num_line != 0);
 	}
 	check_prog_name_and_comment_existence(*header, i);
+	filename = NULL;
 }
 
 void		champion_file_parsing(char *filename)
@@ -84,5 +82,5 @@ void		champion_file_parsing(char *filename)
 		error_exit(e_malloc_error, 0, 0);
 	if (!(main = (t_main *)malloc(sizeof(t_main))))
 		error_exit(e_malloc_error, 0, 0);
-	parsing_line_by_line(fd_input, &header, &main);
+	parsing_line_by_line(fd_input, &header, &main, filename);
 }

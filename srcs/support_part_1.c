@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:38:03 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 17:28:04 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:30:49 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ void		vars_init(t_header **header, t_main **main, char **line, int *i)
 	(*main)->label = NULL;
 	(*main)->next = NULL;
 	(*main)->num_line = 0;
+	(*main)->args[0] = 0;
+	(*main)->args[1] = 0;
+	(*main)->args[2] = 0;
 }
 
 void	free_line_and_exit_header(char *line, t_header *header, int j)

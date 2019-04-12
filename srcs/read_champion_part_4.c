@@ -6,7 +6,7 @@
 /*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 19:36:11 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:09:29 by bsprigga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,9 @@ void	parse_operation(char **line, int i, int fd_input, t_main **main)
 		free(tmp);
 		// read_arguments(line, &j, &new);
 	}
+	if (new == *main)
+		new->next = NULL;
+	else
+		new->next = *main;
+	*main = new;
 }
