@@ -6,13 +6,15 @@
 /*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/04/12 01:53:33 by tsimonis         ###   ########.fr       */
+/*   Updated: 2019/04/28 01:38:33 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op.h"
+#include "asm.h"
+#include "vm.h"
 
-t_op g_op_tab[16] =
+t_op	g_op_tab[NUM_OF_OPS] =
 {
 	{"live", 1, {T_DIR}, 1, 10, 0, 4, 0},
 	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, 1, 4, 1},

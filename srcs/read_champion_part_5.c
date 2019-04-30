@@ -3,19 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   read_champion_part_5.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 13:53:26 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/04/12 21:18:24 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/28 08:52:52 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op.h"
+#include "asm.h"
+#include "vm.h"
 
-/*
-**	free(str) needed to compensate ft_strsub() calls which is an argument to
-**	this function in parse_operation()
-*/
+void	update_main(t_main **main, t_main **new)
+{
+	if (*new == *main)
+		(*new)->next = NULL;
+	else
+		(*new)->next = *main;
+	*main = *new;
+}
+
+void	check_op(t_main *new, int op_start, int op_end, char *line)
+{
+	char	*tmp;
+
+	if (!(tmp =
+		ft_strsub(line, op_start, op_end - op_start)))
+		error_exit(e_malloc_error, g_params->num_line, op_start);
+	if (!(new->num_of_op = find_op(tmp)))
+		error_exit(e_no_operation, g_params->num_line, op_start);
+	new->num_of_op--;
+	free(tmp);
+}
 
 int		find_op(char *str)
 {
@@ -24,7 +43,7 @@ int		find_op(char *str)
 	i = 0;
 	while (i < NUM_OF_OPS)
 	{
-		if (ft_strcmp(g_op_tab[i].name, str) == 0)
+		if (!ft_strcmp(g_op_tab[i].name, str))
 			return (i + 1);
 		i++;
 	}
@@ -32,55 +51,49 @@ int		find_op(char *str)
 	return (0);
 }
 
-static void	skip_empty_and_comment_lines(char **line, int *j, int fd_input,
-										t_main **new)
+static void	skip_empty_and_comment_lines(char **line, int *op_start,
+										int fd_input)
 {
 	char	*line_fd;
 
-	while (!((*line)[*j]) || (*line)[*j] == COMMENT_CHAR ||
-	(*line)[*j] == ALT_COMMENT_CHAR)
+	line_fd = NULL;
+	while ((*line)[*op_start] && ft_strchr(" \t", (*line)[*op_start]))
+		(*op_start)++;
+	while (!((*line)[*op_start]) || (*line)[*op_start] == COMMENT_CHAR ||
+	(*line)[*op_start] == ALT_COMMENT_CHAR)
 	{
+		if (!((*line)[*op_start]))
+			check_slash_zero(fd_input, ft_strlen(line_fd) + 1);
+		free(*line);
 		if (!(line_fd = NULL) && get_next_line(fd_input, &line_fd) <= 0)
-			free_line_and_exit_main(*line, *new, *j);
-		else
-		{
-			free(*line);
-			*line = line_fd;
-			*j = 0;
-			(*new)->num_line++;
-			while ((*line)[*j] && ft_strchr(" \n\t", (*line)[*j]))
-				(*j)++;
-		}
+			error_exit(e_no_operation_after_label,
+						g_params->num_line, *op_start + 1);
+		*line = line_fd;
+		*op_start = 0;
+		g_params->num_line++;
+		while ((*line)[*op_start] && ft_strchr(" \t", (*line)[*op_start]))
+			(*op_start)++;
 	}
+	if (line_fd)
+		check_slash_zero(fd_input, ft_strlen(line_fd) + 1);
+	else
+		check_slash_zero(fd_input, ft_strlen(*line) + 1);
 }
 
-/*
-**	row 27-41 - while loop needed to skip all rows that are empty or start with
-**	comment char
-*/
-
-void		read_command(char **line, int *j, int fd_input, t_main **new)
+void		read_command(char **line, int op_start, int fd_input, t_main **new)
 {
-	int		i;
-	char	*tmp;
+	int		op_end;
 
-	while ((*line)[*j] && ft_strchr(" \n\t", (*line)[*j]))
-		(*j)++;
-	skip_empty_and_comment_lines(line, j, fd_input, new);
-	i = *j;
-	while ((*line)[i] && !ft_strchr(" \t", (*line)[i]))
-		i++;
-	if (!((*line)[i]))
-		error_no_oper_no_args(line, *j, i, new);
+	skip_empty_and_comment_lines(line, &op_start, fd_input);
+	op_end = op_start;
+	while ((*line)[op_end] && ft_strchr(ALPHABET, (*line)[op_end]))
+		op_end++;
+	if (!((*line)[op_end]) || (*line)[op_end] == COMMENT_CHAR
+		|| (*line)[op_end] == ALT_COMMENT_CHAR)
+		error_no_oper_no_args(*line, op_start, op_end);
 	else
 	{
-		if (!(tmp = ft_strsub(*line, *j, i - *j)))
-			error_exit(e_malloc_error, (*new)->num_line, *j);
-		if (!((*new)->num_of_op = find_op(tmp)))
-			error_exit(e_no_operation, (*new)->num_line, i);
-		free(tmp);
-		while ((*line)[i] && ft_strchr(" \t", (*line)[i]))
-			i++;
-		// read_arguments(line, &i, &new);
+		check_op(*new, op_start, op_end, *line);
+		read_arguments(*line, op_end, new, fd_input);
 	}
 }

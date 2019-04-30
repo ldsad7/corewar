@@ -101,9 +101,9 @@ avdefinit:
 avdefwrite:
 avdefl1:
 	live	%295423
-	sti		r4, %:avdeftgt, r2
+	sti		r4, %1, r2
 	add		r2, r3, r2
-	sti		r4, %:avdeftgt, r2
+	sti		r4, %2, r2
 	add		r2, r3, r2
 avdefchk:
 	live	%3940641
@@ -143,5 +143,3 @@ torpchk:
 torploop:
 	ld		%0, r15
 	zjmp	%:torpwrite
-
-avdeftgt:

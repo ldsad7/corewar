@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsprigga <bsprigga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 13:01:05 by bsprigga          #+#    #+#             */
-/*   Updated: 2019/03/31 14:00:21 by bsprigga         ###   ########.fr       */
+/*   Updated: 2019/04/14 20:51:32 by tsimonis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ long int			ft_natural_pow(int base, int pow);
 int					ft_isin(char *str, char *needle);
 int					*ft_range(int min, int max);
 
-# define BUFF_SIZE	1000
+# define BUFF_SIZE	1
 
 int					get_next_line(const int d, char **line);
 char				*ft_str_append_char(char **str, char c);
